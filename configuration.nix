@@ -1,6 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   nix.settings = {
-    trusted-users = ["root" "marcogomez"];
+    trusted-users = [
+      "root"
+      "marcogomez"
+    ];
 
     experimental-features = [
       "nix-command"
@@ -55,13 +59,18 @@
 
   # User configuration
   programs.zsh.enable = true;
-  
+
   users.users.marcogomez = {
     uid = 1000;
     isNormalUser = true;
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" "docker" "audio" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+      "audio"
+    ];
   };
 
   services.pipewire = {
@@ -75,7 +84,11 @@
     extraConfig.pipewire = {
       "10-default" = {
         "context.properties" = {
-          "default.clock.allowed-rates" = [ 48000 96000 192000 ];
+          "default.clock.allowed-rates" = [
+            48000
+            96000
+            192000
+          ];
           "default.clock.rate" = 48000;
           "default.clock.quantum" = 128;
         };
@@ -94,28 +107,109 @@
   };
 
   environment.systemPackages = with pkgs; [
-    wget git git-lfs neovim llvm autoconf automake cmake ninja gettext gnumake
-    meson clang gcc nasm curl gnupg most lsb-release gawk zsh
-    tmux tree gnutar jq unzip ffmpeg bc fzf ripgrep zsh zsh-completions
-    zsh-syntax-highlighting zsh-autosuggestions neofetch ghostty fd    
-    libtool bzip2 zip zlib plocate SDL SDL2 sdl3
-    fluidsynth timidity mesa libGLU glew mpg123 noto-fonts-emoji btop
-    libjpeg libgme libsndfile libvpx flatpak cloudflared gh
-    docker docker-compose nvidia-container-toolkit noto-fonts
-    imagemagick ffmpeg yt-dlp firefox discord ardour prismlauncher
-    dialog wl-clipboard wofi vscode code-cursor brave google-chrome
-    kdePackages.qt6ct oversteer raysession kdePackages.dolphin obs-studio
-    vlc wl-clipboard-rs prismlauncher winetricks protonup-ng gimp kdePackages.kdenlive
+    wget
+    git
+    git-lfs
+    neovim
+    llvm
+    autoconf
+    automake
+    cmake
+    ninja
+    gettext
+    gnumake
+    meson
+    clang
+    gcc
+    nasm
+    curl
+    gnupg
+    most
+    lsb-release
+    gawk
+    zsh
+    tmux
+    tree
+    gnutar
+    jq
+    unzip
+    ffmpeg
+    bc
+    fzf
+    ripgrep
+    zsh
+    zsh-completions
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    neofetch
+    ghostty
+    fd
+    libtool
+    bzip2
+    zip
+    zlib
+    plocate
+    SDL
+    SDL2
+    sdl3
+    fluidsynth
+    timidity
+    mesa
+    libGLU
+    glew
+    mpg123
+    noto-fonts-emoji
+    btop
+    libjpeg
+    libgme
+    libsndfile
+    libvpx
+    flatpak
+    cloudflared
+    gh
+    docker
+    docker-compose
+    nvidia-container-toolkit
+    noto-fonts
+    imagemagick
+    ffmpeg
+    yt-dlp
+    firefox
+    discord
+    ardour
+    prismlauncher
+    dialog
+    wl-clipboard
+    wofi
+    vscode
+    code-cursor
+    brave
+    google-chrome
+    kdePackages.qt6ct
+    oversteer
+    raysession
+    kdePackages.dolphin
+    obs-studio
+    vlc
+    wl-clipboard-rs
+    prismlauncher
+    winetricks
+    protonup-ng
+    gimp
+    kdePackages.kdenlive
     blender
 
-    (python3.withPackages (python-pkgs: with python-pkgs; [
-      pandas
-      pynvim
-      ipython
-    ]))
+    (python3.withPackages (
+      python-pkgs: with python-pkgs; [
+        pandas
+        pynvim
+        ipython
+      ]
+    ))
 
     (pkgs.google-cloud-sdk.withExtraComponents (
-      with pkgs.google-cloud-sdk.components; [
+      with pkgs.google-cloud-sdk.components;
+      [
         docker-credential-gcr
         beta
         alpha
