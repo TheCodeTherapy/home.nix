@@ -28,8 +28,9 @@
     options = "--delete-older-than 7d";
   };
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Enable the OpenSSH service
   services.openssh.enable = true;
