@@ -64,6 +64,13 @@
     extraGroups = [ "wheel" "networkmanager" "docker" "audio" "realtime" ];
   };
 
+  security.pam.loginLimits = [
+    { domain = "@realtime"; item = "rtprio"; type = "soft"; value = "95"; }
+    { domain = "@realtime"; item = "rtprio"; type = "hard"; value = "95"; }
+    { domain = "@realtime"; item = "memlock"; type = "soft"; value = "unlimited"; }
+    { domain = "@realtime"; item = "memlock"; type = "hard"; value = "unlimited"; }
+  ];
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
