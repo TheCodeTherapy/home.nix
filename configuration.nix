@@ -61,7 +61,7 @@
     isNormalUser = true;
     packages = with pkgs; [];
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" "docker" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "realtime" ];
   };
 
   services.pipewire = {
@@ -70,7 +70,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-    systemWide = true;
     wireplumber.enable = true;
     extraConfig.pipewire = {
       "10-default" = {
