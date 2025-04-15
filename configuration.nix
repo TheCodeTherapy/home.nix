@@ -114,7 +114,7 @@
     dialog wl-clipboard wofi vscode code-cursor brave google-chrome
     kdePackages.qt6ct oversteer raysession kdePackages.dolphin obs-studio
     vlc wl-clipboard-rs prismlauncher winetricks protonup-ng gimp kdePackages.kdenlive
-    blender mpv
+    blender mpv qt6.qtwayland
 
     (python3.withPackages (python-pkgs: with python-pkgs; [
       pandas
