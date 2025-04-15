@@ -2,7 +2,9 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # This commit has kernel v6.14.2 and NVidia driver v570.133.07
+    # Check compatibility when updating it
+    nixpkgs.url = "github:NixOS/nixpkgs/2631b0b7abcea6e640ce31cd78ea58910d31e650";
   };
 
   outputs = { self, nixpkgs } @attrs: {

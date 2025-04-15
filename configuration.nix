@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   nix.settings = {
     trusted-users = ["root" "marcogomez"];
 
@@ -90,7 +92,7 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    # package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   environment.systemPackages = with pkgs; [
