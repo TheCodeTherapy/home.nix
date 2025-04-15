@@ -114,7 +114,16 @@
     dialog wl-clipboard wofi vscode code-cursor brave google-chrome
     kdePackages.qt6ct oversteer raysession kdePackages.dolphin obs-studio
     vlc wl-clipboard-rs prismlauncher winetricks protonup-ng gimp kdePackages.kdenlive
-    blender mpv qt6.qtwayland
+    blender mpv qt5.qtwayland qt6.qtwayland
+
+    (pkgs.raysession.overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + ''
+        wrapProgram $out/bin/raysession \
+          --set QT_QPA_PLATFORM wayland \
+          --prefix QT_QPA_PLATFORM_PLUGIN_PATH : "${pkgs.qt5.qtbase}/lib/qt-5/plugins/platforms"
+      '';
+    }))
+
 
     (python3.withPackages (python-pkgs: with python-pkgs; [
       pandas
