@@ -103,18 +103,17 @@
 
   environment.systemPackages = with pkgs; [
     wget git git-lfs neovim llvm autoconf automake cmake ninja gettext gnumake
-    meson clang gcc nasm curl gnupg most lsb-release gawk zsh
-    tmux tree gnutar jq unzip ffmpeg bc fzf ripgrep zsh zsh-completions
-    zsh-syntax-highlighting zsh-autosuggestions neofetch ghostty fd    
-    libtool bzip2 zip zlib plocate SDL SDL2 sdl3
-    fluidsynth timidity mesa libGLU glew mpg123 noto-fonts-emoji btop
-    libjpeg libgme libsndfile libvpx flatpak cloudflared gh
-    docker docker-compose nvidia-container-toolkit noto-fonts
-    imagemagick ffmpeg yt-dlp firefox discord ardour prismlauncher
-    dialog wl-clipboard wofi vscode code-cursor brave google-chrome
-    kdePackages.qt6ct oversteer raysession kdePackages.dolphin obs-studio
-    vlc wl-clipboard-rs prismlauncher winetricks protonup-ng gimp kdePackages.kdenlive
-    blender mpv qt5.qtwayland qt6.qtwayland
+    meson clang gcc nasm curl gnupg most lsb-release gawk zsh tmux tree gnutar
+    jq unzip ffmpeg bc fzf ripgrep zsh zsh-completions zsh-syntax-highlighting
+    zsh-autosuggestions neofetch ghostty fd libtool bzip2 zip zlib plocate SDL
+    SDL2 sdl3 fluidsynth timidity mesa libGLU glew mpg123 noto-fonts-emoji mpv
+    btop libjpeg libgme libsndfile libvpx flatpak cloudflared gh docker swww
+    docker-compose nvidia-container-toolkit noto-fonts imagemagick ffmpeg
+    yt-dlp firefox discord ardour prismlauncher dialog wl-clipboard wofi
+    vscode code-cursor brave google-chrome kdePackages.qt6ct oversteer
+    raysession kdePackages.dolphin obs-studio vlc wl-clipboard-rs
+    prismlauncher winetricks protonup-ng gimp kdePackages.kdenlive blender
+    qt5.qtwayland qt6.qtwayland 
 
     (pkgs.raysession.overrideAttrs (old: {
       postInstall = (old.postInstall or "") + ''
@@ -123,7 +122,6 @@
           --prefix QT_QPA_PLATFORM_PLUGIN_PATH : "${pkgs.qt5.qtbase}/lib/qt-5/plugins/platforms"
       '';
     }))
-
 
     (python3.withPackages (python-pkgs: with python-pkgs; [
       pandas
