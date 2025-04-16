@@ -1,4 +1,11 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib, inputs, ... }: {
+  imports = [
+    (import ./modules/dotfiles.nix {
+      inherit pkgs lib config;
+      dotfilesDir = ./dotfiles;
+    })
+  ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix.settings = {
@@ -64,6 +71,7 @@
     packages = with pkgs; [];
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" "docker" "audio" "realtime" ];
+    linger = true;
   };
 
   security.pam.loginLimits = [
